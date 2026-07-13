@@ -1,0 +1,5 @@
+Faker==40.28.1
+greenlet==3.5.3
+SQLAlchemy==2.0.51
+typing_extensions==4.16.0
+tzdata==2026.3
