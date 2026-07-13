@@ -110,12 +110,12 @@ ORDER BY deadline;
 ```sql
 CREATE INDEX idx_executor_status_deadline
 ON requests (executor_id, status, deadline);
+```
 
 **Почему это ускоряет:**
 - Индекс покрывает все условия `WHERE` и поле сортировки `ORDER BY`.
 - Поиск по `executor_id` и `status` выполняется за логарифмическое время, а `deadline` уже отсортирован внутри индекса.
 - СУБД обращается только к отфильтрованным строкам (без сканирования всей таблицы).
-```
 
 ---
 
