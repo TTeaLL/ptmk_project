@@ -71,7 +71,7 @@
    pip install -r requirements.txt
 
    python main.py
-   ```bash
+
 
 Важно: при первом запуске автоматически генерируются 1000 сотрудников и 1 000 000 заявок – это может занять 5–15 минут в зависимости от мощности компьютера. При последующих запусках данные уже будут существовать, и программа будет работать быстро.
 
@@ -96,12 +96,12 @@
 Исходный запрос (без индекса)
 
    ```bash
-SELECT * FROM requests
-WHERE executor_id = ?
-  AND status = 'in_progress'
-  AND deadline < NOW()
-ORDER BY deadline;
-   ```bash
+   SELECT * FROM requests
+   WHERE executor_id = ?
+     AND status = 'in_progress'
+     AND deadline < NOW()
+   ORDER BY deadline;
+
 
 При отсутствии индексов СУБД выполняет полное сканирование таблицы (1 млн записей).
 
@@ -109,9 +109,9 @@ ORDER BY deadline;
 Создан составной индекс:
 
    ```bash
-CREATE INDEX idx_executor_status_deadline
-ON requests (executor_id, status, deadline);
-   ```bash
+	CREATE INDEX idx_executor_status_deadline
+	ON requests (executor_id, status, deadline);
+
 Почему это ускоряет:
 
 Индекс покрывает все условия WHERE и поле сортировки ORDER BY.
